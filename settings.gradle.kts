@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "TechnicalTest99minutes"
-include ':app'
+include(":app")
