@@ -5,6 +5,8 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
+apply(from = "${rootProject.projectDir}/jacoco.gradle")
+
 android {
     compileSdk = 32
 
@@ -80,4 +82,42 @@ dependencies {
     testImplementation("androidx.arch.core:core-testing:2.1.0")
     androidTestImplementation("io.mockk:mockk-android:1.12.0")
     androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
+}
+
+fun isLinuxOrMacOs(): Boolean {
+    val osName = System.getProperty("os.name").toLowerCase()
+    return osName.contains("linux") || osName.contains("mac os") || osName.contains("macos")
+}
+
+project.afterEvaluate {
+    this.tasks.getByName("preBuild").dependsOn("formatKotlin", "lintKotlin")
+    this.tasks.getByName("preBuild").mustRunAfter("formatKotlin")
+    this.tasks.getByName("clean").dependsOn("installGitHooks")
+    this.tasks.getByName("assemble").dependsOn("installGitHooks")
+    tasks.create("executeValidations") {
+        group = "verification"
+        dependsOn("detekt")
+        dependsOn("testDebugUnitTestCoverageVerification")
+        dependsOn("lintKotlin")
+    }
+    tasks.create("copyGitHooks", Copy::class.java) {
+        description = "Copies the git hooks from team-props/git-hooks to the .git folder."
+        from("${rootDir}/team-props/git-hooks") {
+            include("**/*.sh")
+            rename("(.*).sh", "$1")
+        }
+        into("${rootDir}/.git/hooks")
+    }
+    tasks.create("installGitHooks", Exec::class.java) {
+        description = "Installs the pre-commit git hooks from team-props/git-hooks."
+        group = "git hooks"
+        workingDir = rootDir
+        commandLine = listOf("chmod")
+        args("-R", "+x", ".git/hooks/")
+        dependsOn("copyGitHooks")
+        onlyIf { isLinuxOrMacOs() }
+        doLast {
+            logger.info("---- Git hook installed successfully.")
+        }
+    }
 }
