@@ -13,6 +13,9 @@ const val DELAY_500L = 500L
 const val DELAY_300L = 300L
 const val DELAY_ML_MIN = 100L
 
+// String
+const val EMPTY_STRING = ""
+
 // Numbers
 const val ZERO = 0
 const val ONE = 1

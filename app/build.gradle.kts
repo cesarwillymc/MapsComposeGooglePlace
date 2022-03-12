@@ -21,7 +21,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures.compose = true
+    composeOptions.kotlinCompilerExtensionVersion = "1.1.0"
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -52,6 +53,31 @@ dependencies {
     implementation("com.google.android.material:material:1.5.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
 
+
+    implementation("androidx.compose.ui:ui:1.1.1")
+    implementation("androidx.compose.material:material:1.1.1")
+    implementation("androidx.compose.material:material-icons-extended:1.1.1")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.1.1")
+
+    // Coil
+    implementation("io.coil-kt:coil-compose:1.4.0")
+    implementation("io.coil-kt:coil-svg:1.4.0")
+
+    //Permission
+    implementation("com.google.accompanist:accompanist-permissions:0.21.3-beta")
+
+    // -- Navigation
+    implementation("androidx.navigation:navigation-compose:2.5.0-alpha03")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+    //Lotie
+    implementation("com.airbnb.android:lottie-compose:4.2.0")
+
+    // -- Accompanist
+    implementation("com.google.accompanist:accompanist-insets:0.20.2")
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.20.2")
+    implementation("com.google.accompanist:accompanist-flowlayout:0.20.2")
+
     // -- DI
     val hiltVersion = "2.38.1"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
@@ -79,7 +105,7 @@ dependencies {
     //Coroutine
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
-
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1")
     //Room
     val roomVersion = "2.4.2"
 
