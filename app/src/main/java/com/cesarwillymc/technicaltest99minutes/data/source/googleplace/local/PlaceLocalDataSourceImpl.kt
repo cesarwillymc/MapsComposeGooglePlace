@@ -1,7 +1,12 @@
-package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.remote
+package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.local
 
+import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitieslocal.DetailPlaceDB
+import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.framework.PlaceDao
 import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.framework.PlaceService
+import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.remote.PlaceRemoteDataSource
 import com.cesarwillymc.technicaltest99minutes.data.util.BaseRemoteDataSource
+import com.cesarwillymc.technicaltest99minutes.extension.Result
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
@@ -10,19 +15,29 @@ import javax.inject.Inject
  *
  * Lima, Peru.
  */
-class PlaceRemoteDataSourceImpl @Inject constructor(
-    private val service: PlaceService
-) : PlaceRemoteDataSource, BaseRemoteDataSource() {
+class PlaceLocalDataSourceImpl @Inject constructor(
+    private val dao: PlaceDao
+) : PlaceLocalDataSource {
+    override suspend fun findByDistance(
+        latitude: Double,
+        longitude: Double
+    ) = dao.findByDistance(latitude, longitude)
 
-    private companion object {
-        const val LOCATION_ARG_FORMAT = "%f,%f"
+    override suspend fun getPlaceById(idPlace: String) = try {
+        Result.Success(dao.getPlaceById(idPlace))
+    } catch (e: Exception) {
+        Result.Error(e)
     }
 
-    override suspend fun getNearbyPlace(lat: Double, long: Double)= getResult {
-        service.getNearbyPlace(latLong = LOCATION_ARG_FORMAT.format(lat,long))
+    override suspend fun deletePlace(data: DetailPlaceDB) = try {
+        Result.Success(dao.deletePlace(data = data))
+    } catch (e: Exception) {
+        Result.Error(e)
     }
 
-    override suspend fun getPlaceDetail(idPlace: String) = getResult {
-        service.getPlaceDetail(idPlace)
+    override suspend fun addPlace(data: DetailPlaceDB) = try {
+        Result.Success(dao.addPlace(data))
+    } catch (e: Exception) {
+        Result.Error(e)
     }
 }

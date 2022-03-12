@@ -7,11 +7,13 @@ package com.cesarwillymc.technicaltest99minutes.domain.usecase.googleplace.entit
  * Lima, Peru.
  */
 data class DetailPlace(
-    val idPlace:String,
-    val photos:List<String>,
-    val icon:String,
-    val name:String,
-    val rating:Float,
-    val reviews:List<PlaceReview>,
-    val isFavorite:Boolean
+    val idPlace: String,
+    val photos: List<String>,
+    val icon: String,
+    val name: String,
+    val rating: Float,
+    val reviews: List<PlaceReview>,
+    val isFavorite: Boolean,
+    val latitude: Double,
+    val longitue: Double
 )

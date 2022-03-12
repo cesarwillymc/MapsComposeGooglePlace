@@ -1,7 +1,7 @@
-package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.service
+package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.framework
 
-import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entities.DetailPlaceResultResponse
-import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entities.PlaceResultResponse
+import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitiesresponse.DetailPlaceResultResponse
+import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitiesresponse.PlaceResultResponse
 import com.cesarwillymc.technicaltest99minutes.extension.DEFAULT_MAX_RADIUS
 import com.cesarwillymc.technicaltest99minutes.extension.TYPE_DEFAULT_PLACE
 import retrofit2.http.GET

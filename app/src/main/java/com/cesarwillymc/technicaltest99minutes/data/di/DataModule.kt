@@ -3,6 +3,7 @@ package com.cesarwillymc.technicaltest99minutes.data.di
 import android.app.Application
 import androidx.room.Room
 import com.cesarwillymc.technicaltest99minutes.BuildConfig
+import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.framework.PlaceDao
 import com.cesarwillymc.technicaltest99minutes.data.source.room.DatabaseApp
 import dagger.Module
 import dagger.Provides
@@ -22,4 +23,8 @@ class DataModule {
             .addCallback(callback)
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun providePlaceDao(database: DatabaseApp): PlaceDao = database.getPlaceDao()
 }

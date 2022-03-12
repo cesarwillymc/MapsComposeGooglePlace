@@ -1,9 +1,8 @@
-package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.local.localentities
+package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitieslocal
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.cesarwillymc.technicaltest99minutes.data.source.room.DatabaseApp.Companion.TABLE_PLACE
-import com.cesarwillymc.technicaltest99minutes.domain.usecase.googleplace.entities.PlaceReview
 
 /**
  * Created by cesarwillymamanicanaza on 11/03/22.

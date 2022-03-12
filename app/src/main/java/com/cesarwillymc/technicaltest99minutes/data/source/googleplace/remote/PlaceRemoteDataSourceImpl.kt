@@ -1,6 +1,6 @@
 package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.remote
 
-import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.service.PlaceService
+import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.framework.PlaceService
 import com.cesarwillymc.technicaltest99minutes.data.util.BaseRemoteDataSource
 import javax.inject.Inject
 

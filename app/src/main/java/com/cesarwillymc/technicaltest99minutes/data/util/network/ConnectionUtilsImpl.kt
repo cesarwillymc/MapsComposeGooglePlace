@@ -1,10 +1,10 @@
-package com.cesarwillymc.technicaltest99minutes.data.util.coroutine
+package com.cesarwillymc.technicaltest99minutes.data.util.network
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import android.util.Log
+import com.cesarwillymc.technicaltest99minutes.data.util.network.ConnectionUtils
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 

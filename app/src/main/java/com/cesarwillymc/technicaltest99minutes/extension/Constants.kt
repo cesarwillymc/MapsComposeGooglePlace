@@ -35,5 +35,9 @@ const val DEFAULT_LANGUAGE = "es_PE"
 const val FORMAT_TWO_STRING = "%s %s"
 const val FORMAT_INT = "%d"
 
+// DB Room
+const val LIMIT_DATA_FOR_TABLE = 20
+const val ERROR_DB = "Error no found data"
+
 // Google place
 const val TYPE_DEFAULT_PLACE = "restaurant|pharmacy|bar|food"

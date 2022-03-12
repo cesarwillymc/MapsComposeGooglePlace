@@ -1,4 +1,4 @@
-package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entities
+package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitiesresponse
 
 data class InfoPlaceResponse(
     val icon: String, // https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png

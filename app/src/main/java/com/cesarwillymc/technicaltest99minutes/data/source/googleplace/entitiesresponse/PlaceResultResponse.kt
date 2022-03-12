@@ -1,4 +1,4 @@
-package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entities
+package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitiesresponse
 
 /**
  * Created by cesarwillymamanicanaza on 11/03/22.

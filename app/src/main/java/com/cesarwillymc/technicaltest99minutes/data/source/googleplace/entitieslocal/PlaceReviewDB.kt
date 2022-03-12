@@ -1,4 +1,4 @@
-package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.local.localentities
+package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitieslocal
 
 data class PlaceReviewDB(
     val authorName: String,

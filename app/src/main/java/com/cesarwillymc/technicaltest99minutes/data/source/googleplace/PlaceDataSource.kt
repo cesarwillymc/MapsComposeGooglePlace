@@ -1,10 +1,9 @@
 package com.cesarwillymc.technicaltest99minutes.data.source.googleplace
 
-import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entities.DetailPlaceResultResponse
-import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entities.PlaceResultResponse
 import com.cesarwillymc.technicaltest99minutes.domain.usecase.googleplace.entities.DetailPlace
 import com.cesarwillymc.technicaltest99minutes.domain.usecase.googleplace.entities.Place
 import com.cesarwillymc.technicaltest99minutes.extension.Result
+import kotlinx.coroutines.flow.Flow
 
 
 /**
@@ -14,6 +13,6 @@ import com.cesarwillymc.technicaltest99minutes.extension.Result
  * Lima, Peru.
  */
 interface PlaceDataSource {
-    suspend fun getNearbyPlace(lat: Double, long: Double): Result<List<Place>>
+    suspend fun getNearbyPlace(lat: Double, long: Double): Flow<List<Place>>
     suspend fun getPlaceDetail(idPlace: String): Result<DetailPlace>
 }

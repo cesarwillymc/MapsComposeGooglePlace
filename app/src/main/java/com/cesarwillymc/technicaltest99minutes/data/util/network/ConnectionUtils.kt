@@ -1,4 +1,4 @@
-package com.cesarwillymc.technicaltest99minutes.data.util.coroutine
+package com.cesarwillymc.technicaltest99minutes.data.util.network
 
 /**
  * Created by cesarwillymamanicanaza on 12/03/22.

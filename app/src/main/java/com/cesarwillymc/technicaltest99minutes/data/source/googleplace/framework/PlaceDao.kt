@@ -1,9 +1,9 @@
-package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.local
+package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.framework
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.local.localentities.DetailPlaceDB
+import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitieslocal.DetailPlaceDB
 import com.cesarwillymc.technicaltest99minutes.data.source.room.DatabaseApp.Companion.TABLE_PLACE
 import com.cesarwillymc.technicaltest99minutes.extension.LIMIT_DATA_FOR_TABLE
 import kotlinx.coroutines.flow.Flow
@@ -23,7 +23,7 @@ interface PlaceDao {
     suspend fun findByDistance(latitude: Double, longitude: Double): Flow<List<DetailPlaceDB>>
 
     @Query("SELECT * FROM $TABLE_PLACE WHERE :idPlace like idPlace")
-    suspend fun getPlaceById(idPlace: String): DetailPlaceDB
+    suspend fun getPlaceById(idPlace: String): DetailPlaceDB?
 
     @DELETE
     suspend fun deletePlace(data: DetailPlaceDB)

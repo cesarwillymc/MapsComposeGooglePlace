@@ -1,4 +1,4 @@
-package cl.difarma.ecommerce.chile.domain.base
+package com.cesarwillymc.technicaltest99minutes.domain.base
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow

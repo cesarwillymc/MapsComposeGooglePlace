@@ -1,9 +1,7 @@
 package com.cesarwillymc.technicaltest99minutes.data.source.di
 
-import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.PlaceDataSource
-import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.PlaceRepository
-import com.cesarwillymc.technicaltest99minutes.data.util.coroutine.ConnectionUtils
-import com.cesarwillymc.technicaltest99minutes.data.util.coroutine.ConnectionUtilsImpl
+import com.cesarwillymc.technicaltest99minutes.data.util.network.ConnectionUtils
+import com.cesarwillymc.technicaltest99minutes.data.util.network.ConnectionUtilsImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
