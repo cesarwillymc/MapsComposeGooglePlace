@@ -3,6 +3,8 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+
 }
 
 apply(from = "${rootProject.projectDir}/jacoco.gradle")
@@ -71,6 +73,18 @@ dependencies {
 
     // KTX for the Maps SDK for Android Utility Library
     implementation("com.google.maps.android:maps-utils-ktx:3.2.0")
+
+    //Coroutine
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+
+    //Room
+    val roomVersion = "2.4.2"
+
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
 
     // -- Test
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
