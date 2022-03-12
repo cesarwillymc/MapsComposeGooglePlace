@@ -14,12 +14,12 @@ class PlaceRemoteDataSourceImpl @Inject constructor(
     private val service: PlaceService
 ) : PlaceRemoteDataSource, BaseRemoteDataSource() {
 
-    private companion object {
+    companion object {
         const val LOCATION_ARG_FORMAT = "%f,%f"
     }
 
-    override suspend fun getNearbyPlace(lat: Double, long: Double)= getResult {
-        service.getNearbyPlace(latLong = LOCATION_ARG_FORMAT.format(lat,long))
+    override suspend fun getNearbyPlace(lat: Double, long: Double) = getResult {
+        service.getNearbyPlace(latLong = LOCATION_ARG_FORMAT.format(lat, long))
     }
 
     override suspend fun getPlaceDetail(idPlace: String) = getResult {

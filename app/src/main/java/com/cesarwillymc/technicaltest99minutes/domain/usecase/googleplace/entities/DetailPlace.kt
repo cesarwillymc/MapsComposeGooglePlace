@@ -15,5 +15,7 @@ data class DetailPlace(
     val reviews: List<PlaceReview>,
     val isFavorite: Boolean,
     val latitude: Double,
-    val longitue: Double
+    val longitude: Double,
+    val contactNumber: String,
+    val address: String
 )

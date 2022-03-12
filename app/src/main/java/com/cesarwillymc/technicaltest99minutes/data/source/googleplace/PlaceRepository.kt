@@ -12,9 +12,6 @@ import com.cesarwillymc.technicaltest99minutes.extension.dataOrNull
 import com.cesarwillymc.technicaltest99minutes.extension.getData
 import com.cesarwillymc.technicaltest99minutes.extension.isSuccess
 import com.cesarwillymc.technicaltest99minutes.extension.map
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 /**
@@ -29,13 +26,11 @@ class PlaceRepository @Inject constructor(
     private val mapper: PlaceDataMapper,
     private val connectionUtils: ConnectionUtils
 ) : PlaceDataSource {
-    override suspend fun getNearbyPlace(lat: Double, long: Double): Flow<List<Place>> {
+    override suspend fun getNearbyPlace(lat: Double, long: Double): Result<List<Place>> {
         return if (connectionUtils.isNetworkAvailable()) {
-            flowOf(
-                remoteDataSource.getNearbyPlace(lat, long).map(mapper::responseToDomain).getData()
-            )
+            remoteDataSource.getNearbyPlace(lat, long).map(mapper::responseToDomain)
         } else {
-            localDataSource.findByDistance(lat, long).map { mapper.dbToDomain(it) }
+            localDataSource.findByDistance(lat, long).map(mapper::dbToDomain)
         }
     }
 
@@ -59,6 +54,4 @@ class PlaceRepository @Inject constructor(
             } ?: Result.Error(Exception(ERROR_DB))
         }
     }
-
-
 }

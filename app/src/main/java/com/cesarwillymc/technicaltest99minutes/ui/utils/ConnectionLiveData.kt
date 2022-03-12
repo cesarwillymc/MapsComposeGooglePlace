@@ -88,8 +88,8 @@ class ConnectionLiveData @Inject constructor(@ApplicationContext private val con
                 ) {
                     netCapabilities.let { capabilities ->
                         when {
-                            capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-                                    && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED) -> {
+                            capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
+                                capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED) -> {
                                 postValue(true)
                             }
                         }
@@ -123,5 +123,4 @@ class ConnectionLiveData @Inject constructor(@ApplicationContext private val con
             }
         }
     }
-
 }

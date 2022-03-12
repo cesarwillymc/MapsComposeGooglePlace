@@ -1,6 +1,5 @@
 package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitiesresponse
 
-
 import com.google.gson.annotations.SerializedName
 
 data class PlaceReviewResponse(

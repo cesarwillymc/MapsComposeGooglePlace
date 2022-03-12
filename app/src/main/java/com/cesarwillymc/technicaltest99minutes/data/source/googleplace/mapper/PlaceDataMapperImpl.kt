@@ -2,9 +2,7 @@ package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.mapper
 
 import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitieslocal.DetailPlaceDB
 import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitieslocal.PlaceReviewDB
-import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitiesresponse.DetailPlaceResponse
 import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitiesresponse.DetailPlaceResultResponse
-import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitiesresponse.InfoPlaceResponse
 import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitiesresponse.PlaceResultResponse
 import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitiesresponse.PlaceReviewResponse
 import com.cesarwillymc.technicaltest99minutes.domain.usecase.googleplace.entities.DetailPlace
@@ -24,13 +22,15 @@ class PlaceDataMapperImpl @Inject constructor() :
     override fun responseToDomain(info: PlaceResultResponse): List<Place> {
         return info.result.map {
             Place(
-                idPlace = it.place_id,
+                idPlace = it.placeId,
                 mainPhoto = it.photos?.firstOrNull()?.reference,
                 icon = it.icon,
                 name = it.name,
                 rating = it.rating.toFloat(),
-                isOpen = it.opening_hours.open_now,
-                isFavorite = false
+                isOpen = it.openingHours.openNow,
+                isFavorite = false,
+                latitude = it.geometry.location.lat,
+                longitude = it.geometry.location.lng
             )
         }
     }
@@ -46,7 +46,9 @@ class PlaceDataMapperImpl @Inject constructor() :
                 isFavorite = false,
                 icon = info.icon,
                 latitude = info.geometry.location.lat,
-                longitue = info.geometry.location.lng
+                longitude = info.geometry.location.lng,
+                contactNumber = detail.result.contactNumber.orEmpty(),
+                address = detail.result.formattedAddress
             )
         }
     }
@@ -69,7 +71,9 @@ class PlaceDataMapperImpl @Inject constructor() :
             },
             isFavorite = true,
             latitude = info.latitude,
-            longitude = info.longitue
+            longitude = info.longitude,
+            nameAddress = info.address,
+            contactNumber = info.contactNumber
         )
     }
 
@@ -82,7 +86,9 @@ class PlaceDataMapperImpl @Inject constructor() :
                 it.name,
                 it.rating,
                 false,
-                it.isFavorite
+                it.isFavorite,
+                it.latitude,
+                it.longitude
             )
         }
     }
@@ -105,7 +111,9 @@ class PlaceDataMapperImpl @Inject constructor() :
             },
             isFavorite = info.isFavorite,
             latitude = info.latitude,
-            longitue = info.longitude
+            longitude = info.longitude,
+            contactNumber = info.contactNumber.orEmpty(),
+            address = info.nameAddress
         )
     }
 

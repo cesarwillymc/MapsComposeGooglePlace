@@ -3,7 +3,7 @@ package com.cesarwillymc.technicaltest99minutes.data.source.room
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.cesarwillymc.technicaltest99minutes.BuildConfig
+import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitieslocal.DetailPlaceDB
 import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.framework.PlaceDao
 import com.cesarwillymc.technicaltest99minutes.data.util.coroutine.IoDispatcher
 import com.cesarwillymc.technicaltest99minutes.data.util.local.Converters
@@ -19,7 +19,7 @@ import javax.inject.Provider
  * Lima, Peru.
  */
 
-@Database(entities = [], version = ONE)
+@Database(entities = [DetailPlaceDB::class], version = ONE, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class DatabaseApp : RoomDatabase() {
 

@@ -2,11 +2,7 @@ package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.local
 
 import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitieslocal.DetailPlaceDB
 import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.framework.PlaceDao
-import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.framework.PlaceService
-import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.remote.PlaceRemoteDataSource
-import com.cesarwillymc.technicaltest99minutes.data.util.BaseRemoteDataSource
 import com.cesarwillymc.technicaltest99minutes.extension.Result
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
@@ -21,7 +17,11 @@ class PlaceLocalDataSourceImpl @Inject constructor(
     override suspend fun findByDistance(
         latitude: Double,
         longitude: Double
-    ) = dao.findByDistance(latitude, longitude)
+    ) = try {
+        Result.Success(dao.findByDistance(latitude, longitude))
+    } catch (e: Exception) {
+        Result.Error(e)
+    }
 
     override suspend fun getPlaceById(idPlace: String) = try {
         Result.Success(dao.getPlaceById(idPlace))

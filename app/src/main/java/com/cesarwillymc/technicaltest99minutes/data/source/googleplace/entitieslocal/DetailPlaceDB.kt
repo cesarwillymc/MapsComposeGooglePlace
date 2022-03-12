@@ -20,6 +20,8 @@ data class DetailPlaceDB(
     val rating: Float,
     val reviews: List<PlaceReviewDB>,
     val isFavorite: Boolean,
+    val nameAddress: String,
+    val contactNumber: String?,
     val latitude: Double,
     val longitude: Double
 )

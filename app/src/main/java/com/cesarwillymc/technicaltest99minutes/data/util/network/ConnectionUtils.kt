@@ -7,5 +7,5 @@ package com.cesarwillymc.technicaltest99minutes.data.util.network
  * Lima, Peru.
  */
 interface ConnectionUtils {
-    fun isNetworkAvailable() : Boolean
+    fun isNetworkAvailable(): Boolean
 }

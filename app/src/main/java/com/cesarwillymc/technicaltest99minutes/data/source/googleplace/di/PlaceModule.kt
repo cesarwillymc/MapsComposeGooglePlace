@@ -28,5 +28,4 @@ abstract class PlaceModule {
 
     @Binds
     abstract fun bindMapper(mapper: PlaceDataMapperImpl): PlaceDataMapper
-
 }

@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import com.cesarwillymc.technicaltest99minutes.data.util.network.ConnectionUtils
+import androidx.annotation.RequiresApi
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -19,24 +19,30 @@ class ConnectionUtilsImpl @Inject constructor(@ApplicationContext private val ap
 
     @Suppress("DEPRECATION")
     override fun isNetworkAvailable(): Boolean {
-        try {
+        return try {
             val connectivityManager =
                 applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                val nw = connectivityManager.activeNetwork ?: return false
-                val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
-                return when {
-                    actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-                    actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-                    actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-                    else -> false
+            when {
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> connectivityManager.getConnectionApiM()
+                else -> {
+                    val nwInfo = connectivityManager.activeNetworkInfo
+                    nwInfo?.isConnected ?: false
                 }
-            } else {
-                val nwInfo = connectivityManager.activeNetworkInfo ?: return false
-                return nwInfo.isConnected
             }
         } catch (e: Exception) {
-            return false
+            false
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun ConnectivityManager.getConnectionApiM(): Boolean {
+        val nw = activeNetwork
+        val actNw = getNetworkCapabilities(nw)
+        return when {
+            actNw?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true -> true
+            actNw?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) == true -> true
+            actNw?.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) == true -> true
+            else -> false
         }
     }
 }
