@@ -13,4 +13,6 @@ import com.cesarwillymc.technicaltest99minutes.extension.Result
 interface PlaceDataSource {
     suspend fun getNearbyPlace(lat: Double, long: Double): Result<List<Place>>
     suspend fun getPlaceDetail(idPlace: String): Result<DetailPlace>
+    suspend fun saveFavoritePlace(detail: DetailPlace): Result<Unit>
+    suspend fun deleteFavoritePlace(detail: DetailPlace): Result<Unit>
 }

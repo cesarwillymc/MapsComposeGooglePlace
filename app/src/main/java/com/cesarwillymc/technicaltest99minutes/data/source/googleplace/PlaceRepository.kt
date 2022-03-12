@@ -54,4 +54,12 @@ class PlaceRepository @Inject constructor(
             } ?: Result.Error(Exception(ERROR_DB))
         }
     }
+
+    override suspend fun saveFavoritePlace(detail: DetailPlace): Result<Unit> {
+        return localDataSource.addPlace(mapper.domainToDb(detail))
+    }
+
+    override suspend fun deleteFavoritePlace(detail: DetailPlace): Result<Unit> {
+        return localDataSource.deletePlace(mapper.domainToDb(detail))
+    }
 }
