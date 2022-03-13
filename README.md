@@ -23,7 +23,8 @@
 ## HOW WORK
 
 - You can use this app mode offline, saving your places favorites or unmark favorites.
-<img src="assets/modeoffline.jpg" width="250"> 
+
+<img src="assets/modeoffline.jpeg" width="250"> 
 
 - We have a Slider Images created until zero
 
@@ -31,7 +32,7 @@
 
 - We can see the reviews for the people. 
 
-<img src="assets/review.jpg" width="250"> 
+<img src="assets/review.jpeg" width="250"> 
 
 ## APP AND VIDEO ABOUT APP
 
