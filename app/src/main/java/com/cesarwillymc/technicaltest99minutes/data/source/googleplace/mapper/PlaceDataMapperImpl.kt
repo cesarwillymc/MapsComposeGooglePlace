@@ -8,6 +8,7 @@ import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entitiesr
 import com.cesarwillymc.technicaltest99minutes.domain.usecase.googleplace.entities.DetailPlace
 import com.cesarwillymc.technicaltest99minutes.domain.usecase.googleplace.entities.Place
 import com.cesarwillymc.technicaltest99minutes.domain.usecase.googleplace.entities.PlaceReview
+import com.cesarwillymc.technicaltest99minutes.extension.orEmpty
 import javax.inject.Inject
 
 /**
@@ -20,35 +21,35 @@ class PlaceDataMapperImpl @Inject constructor() :
     PlaceDataMapper {
 
     override fun responseToDomain(info: PlaceResultResponse): List<Place> {
-        return info.result.map {
+        return info.results?.map {
             Place(
-                idPlace = it.placeId,
+                idPlace = it.placeId.orEmpty(),
                 mainPhoto = it.photos?.firstOrNull()?.reference,
-                icon = it.icon,
-                name = it.name,
-                rating = it.rating.toFloat(),
-                isOpen = it.openingHours.openNow,
+                icon = it.icon.orEmpty(),
+                name = it.name.orEmpty(),
+                rating = it.rating?.toFloat().orEmpty(),
+                isOpen = it.openingHours?.openNow.orEmpty(),
                 isFavorite = false,
-                latitude = it.geometry.location.lat,
-                longitude = it.geometry.location.lng
+                latitude = it.geometry?.location?.lat.orEmpty(),
+                longitude = it.geometry?.location?.lng.orEmpty()
             )
-        }
+        }.orEmpty()
     }
 
     override fun responseToDomain(detail: DetailPlaceResultResponse): DetailPlace {
         return detail.result.let { info ->
             DetailPlace(
-                idPlace = info.placeId,
-                photos = info.photos?.map { it.reference }.orEmpty(),
-                name = info.name,
-                rating = info.rating.toFloat(),
+                idPlace = info.placeId.orEmpty(),
+                photos = info.photos?.map { it.reference.orEmpty() }.orEmpty(),
+                name = info.name.orEmpty(),
+                rating = info.rating?.toFloat().orEmpty(),
                 reviews = info.reviews?.map { responseToDomain(it) }.orEmpty(),
                 isFavorite = false,
-                icon = info.icon,
-                latitude = info.geometry.location.lat,
-                longitude = info.geometry.location.lng,
+                icon = info.icon.orEmpty(),
+                latitude = info.geometry.location?.lat.orEmpty(),
+                longitude = info.geometry.location?.lng.orEmpty(),
                 contactNumber = detail.result.contactNumber.orEmpty(),
-                address = detail.result.formattedAddress
+                address = detail.result.formattedAddress.orEmpty()
             )
         }
     }

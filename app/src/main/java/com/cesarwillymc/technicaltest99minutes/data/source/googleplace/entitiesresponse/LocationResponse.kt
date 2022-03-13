@@ -7,6 +7,6 @@ package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entities
  * Lima, Peru.
  */
 data class LocationResponse(
-    val lat: Double,
-    val lng: Double
+    val lat: Double?,
+    val lng: Double?
 )

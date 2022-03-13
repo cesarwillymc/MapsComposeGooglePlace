@@ -21,7 +21,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures.compose = true
+    composeOptions.kotlinCompilerExtensionVersion = "1.1.0"
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -50,7 +51,32 @@ dependencies {
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.4.1")
     implementation("com.google.android.material:material:1.5.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
+// -- Constraint
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.0")
+
+    implementation("androidx.compose.ui:ui:1.1.1")
+    implementation("androidx.compose.material:material:1.1.1")
+    implementation("androidx.compose.material:material-icons-extended:1.1.1")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.1.1")
+
+    // Coil
+    implementation("io.coil-kt:coil-compose:1.4.0")
+    implementation("io.coil-kt:coil-svg:1.4.0")
+
+    //Permission
+    implementation("com.google.accompanist:accompanist-permissions:0.21.3-beta")
+
+    // -- Navigation
+    implementation("androidx.navigation:navigation-compose:2.5.0-alpha03")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+    //Lotie
+    implementation("com.airbnb.android:lottie-compose:4.2.0")
+
+    // -- Accompanist
+    implementation("com.google.accompanist:accompanist-insets:0.20.2")
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.20.2")
+    implementation("com.google.accompanist:accompanist-flowlayout:0.20.2")
 
     // -- DI
     val hiltVersion = "2.38.1"
@@ -79,6 +105,8 @@ dependencies {
     //Coroutine
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1")
+    implementation("androidx.compose.runtime:runtime-livedata:1.2.0-alpha05")
 
     //Room
     val roomVersion = "2.4.2"
@@ -94,6 +122,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     testImplementation("io.mockk:mockk:1.12.0")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.1.1")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
     androidTestImplementation("io.mockk:mockk-android:1.12.0")

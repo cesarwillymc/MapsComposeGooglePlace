@@ -1,5 +1,6 @@
 package com.cesarwillymc.technicaltest99minutes.data.util
 
+import android.util.Log
 import com.cesarwillymc.technicaltest99minutes.data.util.network.ErrorApi
 import com.cesarwillymc.technicaltest99minutes.data.util.network.ErrorHandler
 import com.cesarwillymc.technicaltest99minutes.data.util.network.ErrorSource
@@ -25,6 +26,7 @@ abstract class BaseRemoteDataSource : ErrorHandler {
     ): Result<Out> = try {
         Result.Success(call())
     } catch (e: Exception) {
+        Log.e("error", "$e")
         Result.Error(exception = getError(e).toDomain())
     }
 

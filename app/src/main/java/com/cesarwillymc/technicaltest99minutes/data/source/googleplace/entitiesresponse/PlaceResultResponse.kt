@@ -7,6 +7,6 @@ package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entities
  * Lima, Peru.
  */
 data class PlaceResultResponse(
-    val result: List<InfoPlaceResponse>,
+    val results: List<InfoPlaceResponse>?,
     val status: String,
 )

@@ -51,8 +51,8 @@ class PlaceRemoteDataSourceImplTest {
         placeRemoteDataSource.getNearbyPlace(LATITUDE, LONGITUDE).let {
             assert(it.isSuccess)
             Assert.assertEquals(
-                placeResultResponse.result.first().icon,
-                it.getData().result.first().icon
+                placeResultResponse.results?.first()?.icon,
+                it.getData().results?.first()?.icon
             )
         }
     }

@@ -25,20 +25,20 @@ class PlaceDataMapperImplTest {
     @Test
     fun responseToDomain() {
         mapper.responseToDomain(placeResultResponse).let {
-            assertEquals(it.first().icon, placeResultResponse.result.first().icon)
-            assertEquals(it.first().idPlace, placeResultResponse.result.first().placeId)
-            assertEquals(it.first().name, placeResultResponse.result.first().name)
+            assertEquals(it.first().icon, placeResultResponse.results?.first()?.icon)
+            assertEquals(it.first().idPlace, placeResultResponse.results?.first()?.placeId)
+            assertEquals(it.first().name, placeResultResponse.results?.first()?.name)
             assertEquals(
                 it.first().mainPhoto,
-                placeResultResponse.result.first().photos?.first()?.reference
+                placeResultResponse.results?.first()?.photos?.first()?.reference
             )
             assertEquals(
                 it.first().latitude.toString(),
-                placeResultResponse.result.first().geometry.location.lat.toString()
+                placeResultResponse.results?.first()?.geometry?.location?.lat.toString()
             )
             assertEquals(
                 it.first().longitude.toString(),
-                placeResultResponse.result.first().geometry.location.lng.toString()
+                placeResultResponse.results?.first()?.geometry?.location?.lng.toString()
             )
         }
     }
@@ -54,11 +54,11 @@ class PlaceDataMapperImplTest {
             assertEquals(it.photos.first(), detailResponse.result.photos?.first()?.reference)
             assertEquals(
                 it.latitude.toString(),
-                detailResponse.result.geometry.location.lat.toString()
+                detailResponse.result.geometry.location?.lat.toString()
             )
             assertEquals(
                 it.longitude.toString(),
-                detailResponse.result.geometry.location.lng.toString()
+                detailResponse.result.geometry.location?.lng.toString()
             )
         }
     }
