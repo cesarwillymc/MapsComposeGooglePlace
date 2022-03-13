@@ -1,6 +1,5 @@
 package com.cesarwillymc.technicaltest99minutes.ui.theme
 
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -50,3 +49,4 @@ val TextExtraLarge = 28.sp
 // Size cards
 val CardWidthMin = 300.dp
 val CardHeightMin = 280.dp
+val CardImageMin = 120.dp

@@ -8,7 +8,7 @@ import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.framework
 import com.cesarwillymc.technicaltest99minutes.data.util.coroutine.IoDispatcher
 import com.cesarwillymc.technicaltest99minutes.data.util.local.Converters
 import com.cesarwillymc.technicaltest99minutes.extension.ONE
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -27,7 +27,7 @@ abstract class DatabaseApp : RoomDatabase() {
 
     class Callback @Inject constructor(
         private val database: Provider<DatabaseApp>,
-        @IoDispatcher private val applicationScope: CoroutineScope
+        @IoDispatcher dispatcher: CoroutineDispatcher
     ) : RoomDatabase.Callback()
 
     companion object {

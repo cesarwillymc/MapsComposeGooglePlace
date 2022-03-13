@@ -7,12 +7,18 @@ import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
+import com.cesarwillymc.technicaltest99minutes.ui.base.WithoutInternetCard
 import com.cesarwillymc.technicaltest99minutes.ui.route.HomeRoute
 import com.cesarwillymc.technicaltest99minutes.ui.route.graph.GreenCrossNavGraph
 import com.cesarwillymc.technicaltest99minutes.ui.theme.GreenCrossTheme
@@ -22,6 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -29,6 +36,8 @@ class MainActivity : ComponentActivity() {
 
                 ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
                     val systemUiController = rememberSystemUiController()
+                    val mainViewModel: MainViewModel = hiltViewModel()
+                    val hasInternet by mainViewModel.hasInternet.collectAsState()
 
                     /* Side effects */
                     SideEffect {
@@ -39,7 +48,7 @@ class MainActivity : ComponentActivity() {
                     }
 
                     val navController = rememberNavController()
-                    Scaffold{ paddingValues ->
+                    Scaffold { paddingValues ->
                         Box(modifier = Modifier.padding(paddingValues)) {
                             GreenCrossNavGraph(
                                 navController = navController,
@@ -53,6 +62,13 @@ class MainActivity : ComponentActivity() {
                                     )
                                 }
                             )
+                            if (!hasInternet) {
+                                WithoutInternetCard(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .align(Alignment.BottomCenter)
+                                )
+                            }
                         }
                     }
                 }

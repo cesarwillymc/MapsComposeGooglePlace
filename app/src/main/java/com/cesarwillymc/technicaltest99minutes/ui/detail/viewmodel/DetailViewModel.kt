@@ -20,5 +20,4 @@ class DetailViewModel @Inject constructor(
     private val savePlaceUseCase: SavePlaceUseCase,
     private val deletePlaceUseCase: DeletePlaceUseCase,
     private val getPlaceId: GetPlaceIdUseCase
-) : ViewModel() {
-}
+) : ViewModel()

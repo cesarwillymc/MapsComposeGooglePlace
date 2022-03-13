@@ -8,11 +8,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.cesarwillymc.technicaltest99minutes.ui.detail.DetailScreen
-import com.cesarwillymc.technicaltest99minutes.ui.detail.viewmodel.DetailViewModel
 import com.cesarwillymc.technicaltest99minutes.ui.home.HomeScreen
 import com.cesarwillymc.technicaltest99minutes.ui.route.HomeRoute
 import com.cesarwillymc.technicaltest99minutes.ui.route.action.HomeAction
-
 
 @SuppressWarnings("LongMethod")
 @Composable
@@ -37,10 +35,10 @@ fun GreenCrossNavGraph(
         }
 
         composable(HomeRoute.Detail.path) {
-           DetailScreen(
-               navigateUp = homeActions.upPress,
-               detailViewModel = hiltViewModel()
-           )
+            DetailScreen(
+                navigateUp = homeActions.upPress,
+                detailViewModel = hiltViewModel()
+            )
         }
     }
 }

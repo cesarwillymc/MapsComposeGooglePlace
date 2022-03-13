@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 
 @Module
 @InstallIn(SingletonComponent::class)
-object CoroutinesModule {
+class CoroutinesModule {
 
     @DefaultDispatcher
     @Provides

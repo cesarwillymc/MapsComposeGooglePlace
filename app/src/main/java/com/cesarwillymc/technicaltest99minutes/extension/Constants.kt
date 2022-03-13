@@ -32,6 +32,7 @@ const val TAG_BTN_LOCATION_MAPS = "GoogleMapMyLocationButton"
 const val DEFAULT_MAX_RADIUS = 10000
 const val DEFAULT_RADIUS = 2
 const val KILOMETERS = 1000
+const val REPEAT_1000 = 1000
 
 // Format
 const val DEFAULT_LANGUAGE = "es_PE"
@@ -44,3 +45,9 @@ const val ERROR_DB = "Error no found data"
 
 // Google place
 const val TYPE_DEFAULT_PLACE = "restaurant|pharmacy|bar|food"
+
+const val SIZE_400 = 400
+const val SIZE_200 = 200
+
+@SuppressWarnings("MaxLineLength")
+const val DEFAULT_IMG = "https://www.creativefabrica.com/wp-content/uploads/2020/03/09/Simple-Fork-Plate-Icon-Restaurant-Logo-Graphics-3446203-1-1-580x348.jpg"

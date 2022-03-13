@@ -10,5 +10,5 @@ import com.google.gson.annotations.SerializedName
  */
 data class PlacePhotoResponse(
     @SerializedName("photo_reference")
-    val reference: String
+    val reference: String?
 )

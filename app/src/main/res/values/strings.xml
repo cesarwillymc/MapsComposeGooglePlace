@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TechnicalTest99minutes</string>
+    <string name="lbl_without_internet">Sin conexión a internet</string>
 </resources>

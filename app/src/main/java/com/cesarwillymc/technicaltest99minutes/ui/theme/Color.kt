@@ -50,4 +50,3 @@ val WarningYellowLight = Color(0xFFFDDC37)
 val DangerRed = Color(0xFFFF2525)
 val SurfaceRed = Color(0xFFFFF1F1)
 val DangerRedLight = Color(0xFFFF6060)
-

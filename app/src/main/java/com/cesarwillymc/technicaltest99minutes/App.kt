@@ -10,4 +10,4 @@ import dagger.hilt.android.HiltAndroidApp
  * Lima, Peru.
  */
 @HiltAndroidApp
-class App : Application()
+open class App : Application()

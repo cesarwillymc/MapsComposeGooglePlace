@@ -1,6 +1,7 @@
 package com.cesarwillymc.technicaltest99minutes.ui.detail
 
 import androidx.compose.runtime.Composable
+import com.cesarwillymc.technicaltest99minutes.ui.base.GreenCrossSimpleScaffold
 import com.cesarwillymc.technicaltest99minutes.ui.detail.viewmodel.DetailViewModel
 
 /**
@@ -11,4 +12,7 @@ import com.cesarwillymc.technicaltest99minutes.ui.detail.viewmodel.DetailViewMod
  */
 @Composable
 fun DetailScreen(navigateUp: () -> Unit, detailViewModel: DetailViewModel) {
+    GreenCrossSimpleScaffold(navigateUp = navigateUp) {
+        // falta
+    }
 }

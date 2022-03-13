@@ -7,5 +7,5 @@ package com.cesarwillymc.technicaltest99minutes.data.source.googleplace.entities
  * Lima, Peru.
  */
 data class GeometryResponse(
-    val location: LocationResponse
+    val location: LocationResponse?
 )

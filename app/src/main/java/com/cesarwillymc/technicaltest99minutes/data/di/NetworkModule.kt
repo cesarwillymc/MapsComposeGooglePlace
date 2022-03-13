@@ -1,6 +1,7 @@
 package com.cesarwillymc.technicaltest99minutes.data.di
 
 import com.cesarwillymc.technicaltest99minutes.BuildConfig
+import com.cesarwillymc.technicaltest99minutes.data.source.googleplace.framework.PlaceService
 import com.cesarwillymc.technicaltest99minutes.data.util.interceptor.GoogleInterceptor
 import com.cesarwillymc.technicaltest99minutes.extension.OkHttpHelper.getOkHttpBuilder
 import com.google.gson.Gson
@@ -45,7 +46,12 @@ class NetworkModule {
     @Provides
     fun providesGoogle(
         okHttpClient: OkHttpClient
-    ) = provideServiceGoogle<Any>(okHttpClient)
+    ) = provideServiceGoogle<PlaceService>(okHttpClient)
+
+    @Singleton
+    @Provides
+    fun provideLoggingInterceptor() =
+        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
     private inline fun <reified T : Any> provideServiceGoogle(
         okhttpClient: OkHttpClient

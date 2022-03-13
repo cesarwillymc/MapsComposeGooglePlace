@@ -76,7 +76,7 @@ object PlaceRepositoryDataGenerator {
     )
 
     val placeResultResponse = PlaceResultResponse(
-        result = listOf(
+        results = listOf(
             InfoPlaceResponse(
                 icon = ICON,
                 name = NAME,
