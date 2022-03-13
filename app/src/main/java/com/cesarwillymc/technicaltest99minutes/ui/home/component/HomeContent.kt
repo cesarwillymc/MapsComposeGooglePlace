@@ -23,6 +23,7 @@ import com.cesarwillymc.technicaltest99minutes.extension.ZOOM_MAX
 import com.cesarwillymc.technicaltest99minutes.extension.ZOOM_MIN
 import com.cesarwillymc.technicaltest99minutes.extension.ZOOM_NORMAL
 import com.cesarwillymc.technicaltest99minutes.ui.base.GreenFullScreenLoading
+import com.cesarwillymc.technicaltest99minutes.ui.home.entities.CurrentLatLong
 import com.cesarwillymc.technicaltest99minutes.ui.home.entities.HomeUiState
 import com.cesarwillymc.technicaltest99minutes.ui.home.entities.PlacePresentation
 import com.cesarwillymc.technicaltest99minutes.ui.theme.Normal100
@@ -53,7 +54,7 @@ fun HomeContent(
     homeUiState: HomeUiState,
     navigateToDetail: (String) -> Unit,
     permissionUiState: Boolean?,
-    currentLatLong: LatLng?,
+    currentLatLong: CurrentLatLong,
     onClickButtonCurrentLocation: (LatLng?) -> Unit
 ) {
     val context = LocalContext.current
@@ -80,17 +81,18 @@ fun HomeContent(
             mutableStateOf<PlacePresentation?>(null)
         }
         val cameraPositionState = rememberCameraPositionState {
-            currentLatLong?.let {
+            currentLatLong.location?.let {
                 position = CameraPosition.fromLatLngZoom(it, ZOOM_NORMAL)
             }
         }
         LaunchedEffect(currentLatLong) {
             snapshotFlow { currentLatLong }.collectLatest {
                 delay(DELAY_500L)
-                uiSettings = uiSettings.copy(myLocationButtonEnabled = currentLatLong == null)
-                properties = properties.copy(isMyLocationEnabled = currentLatLong == null)
-                if (cameraPositionState.position.target != currentLatLong) {
-                    currentLatLong?.let {
+                uiSettings =
+                    uiSettings.copy(myLocationButtonEnabled = currentLatLong.location == null)
+                properties = properties.copy(isMyLocationEnabled = currentLatLong.location == null)
+                if (cameraPositionState.position.target != currentLatLong.location) {
+                    currentLatLong.location?.let {
                         cameraPositionState.animate(
                             CameraUpdateFactory.newLatLngZoom(
                                 it,
@@ -121,7 +123,7 @@ fun HomeContent(
                     cameraPositionState = cameraPositionState
 
                 ) {
-                    currentLatLong?.let {
+                    currentLatLong.location?.let {
                         Marker(
                             position = it,
                             icon = R.drawable.ic_current_ubication.bitmapDescriptorFromVector(
@@ -142,7 +144,7 @@ fun HomeContent(
                         }
                     }
                 }
-                if (currentLatLong != null)
+                if (currentLatLong.location != null)
                     ButtonIconCard(
                         modifier = Modifier.align(Alignment.TopEnd),
                         padding = Small120,

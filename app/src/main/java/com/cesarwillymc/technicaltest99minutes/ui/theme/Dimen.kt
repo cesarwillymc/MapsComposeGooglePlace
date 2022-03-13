@@ -50,3 +50,6 @@ val TextExtraLarge = 28.sp
 val CardWidthMin = 300.dp
 val CardHeightMin = 280.dp
 val CardImageMin = 120.dp
+val ImageMini = 50.dp
+val ImageLarge = 260.dp
+val ImageSuperMini = 40.dp

@@ -6,6 +6,7 @@ import com.cesarwillymc.technicaltest99minutes.domain.usecase.googleplace.entiti
 import com.cesarwillymc.technicaltest99minutes.extension.dataOrNull
 import com.cesarwillymc.technicaltest99minutes.extension.isError
 import com.cesarwillymc.technicaltest99minutes.extension.isSuccess
+import com.cesarwillymc.technicaltest99minutes.ui.home.entities.CurrentLatLong
 import com.cesarwillymc.technicaltest99minutes.ui.home.entities.HomeUiState
 import com.cesarwillymc.technicaltest99minutes.ui.utils.launch
 import com.google.android.gms.maps.model.LatLng
@@ -16,6 +17,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
+import kotlin.random.Random
 
 /**
  * Created by cesarwillymamanicanaza on 12/03/22.
@@ -34,7 +36,7 @@ class HomeViewModel @Inject constructor(
     private val _permissionUiState = MutableStateFlow<Boolean?>(null)
 
     val currentLatLong get() = _currentLatLong.asStateFlow()
-    private val _currentLatLong = MutableStateFlow<LatLng?>(null)
+    private val _currentLatLong = MutableStateFlow(CurrentLatLong())
 
     val forceLocationSetting get() = _forceLocationSetting.receiveAsFlow()
     private val _forceLocationSetting: Channel<Boolean> = Channel()
@@ -49,7 +51,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onLoadNearbyPlaces(latLng: LatLng?) {
-        _currentLatLong.value = latLng
+        _currentLatLong.value = CurrentLatLong(latLng, Random.nextInt())
         latLng?.let {
             if (!homeUiState.value.isComplete)
                 _homeUiState.update { it.copy(isLoading = true) }

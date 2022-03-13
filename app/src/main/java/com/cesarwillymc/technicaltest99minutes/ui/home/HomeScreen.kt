@@ -51,8 +51,8 @@ fun HomeScreen(
     HomeContent(
         homeUiState = homeUiState,
         navigateToDetail = navigateToDetail,
-        permissionUiState,
-        currentLatLong
+        permissionUiState = permissionUiState,
+        currentLatLong = currentLatLong
     ) {
         if (it == null) {
             context.currentLocationByNetwork(

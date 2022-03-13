@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">TechnicalTest99minutes</string>
     <string name="lbl_without_internet">Sin conexión a internet</string>
+    <string name="til_try_again">Reintentar</string>
+    <string name="til_error_detail">Sucedio un problema intentanlo luego</string>
+    <string name="til_recommend">Recomendaciones</string>
+    <string name="til_package">package</string>
 </resources>

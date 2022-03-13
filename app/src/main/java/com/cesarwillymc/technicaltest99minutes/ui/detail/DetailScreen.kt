@@ -1,7 +1,12 @@
 package com.cesarwillymc.technicaltest99minutes.ui.detail
 
 import androidx.compose.runtime.Composable
-import com.cesarwillymc.technicaltest99minutes.ui.base.GreenCrossSimpleScaffold
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.ExperimentalComposeUiApi
+import com.cesarwillymc.technicaltest99minutes.extension.orEmpty
+import com.cesarwillymc.technicaltest99minutes.ui.base.GreenFullScreenLoading
+import com.cesarwillymc.technicaltest99minutes.ui.detail.components.DetailContent
 import com.cesarwillymc.technicaltest99minutes.ui.detail.viewmodel.DetailViewModel
 
 /**
@@ -10,9 +15,19 @@ import com.cesarwillymc.technicaltest99minutes.ui.detail.viewmodel.DetailViewMod
  *
  * Lima, Peru.
  */
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun DetailScreen(navigateUp: () -> Unit, detailViewModel: DetailViewModel) {
-    GreenCrossSimpleScaffold(navigateUp = navigateUp) {
-        // falta
-    }
+    val detailUiState by detailViewModel.detailUiState.collectAsState()
+    val stateFavorite = detailUiState.data?.isFavorite.orEmpty()
+
+    GreenFullScreenLoading(detailUiState.isLoading)
+    DetailContent(
+        navigateUp = navigateUp,
+        stateFavorite = stateFavorite,
+        detailUiState = detailUiState,
+        onUnMarkFavorite = detailViewModel::onUnMarkFavorite,
+        onMarkFavorite = detailViewModel::onMarkFavorite,
+        onClickReload = detailViewModel::onLoadPlaceId
+    )
 }
