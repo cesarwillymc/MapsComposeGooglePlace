@@ -16,6 +16,7 @@
         android:theme="@style/Theme.TechnicalTest99minutes">
         <activity
             android:name=".ui.MainActivity"
+            android:theme="@style/Theme.CruzVerde.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
